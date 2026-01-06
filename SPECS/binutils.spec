@@ -27,7 +27,7 @@ Name: %{?scl_prefix}binutils
 # The variable %%{source} (see below) should be set to indicate which of these
 # origins is being used.
 Version: 2.44
-Release: 7%{?dist}
+Release: 7%{?dist}.1
 License: GPL-3.0-or-later AND (GPL-3.0-or-later WITH Bison-exception-2.2) AND (LGPL-2.0-or-later WITH GCC-exception-2.0) AND BSD-3-Clause AND GFDL-1.3-or-later AND GPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-2.0-or-later
 URL: https://sourceware.org/binutils
 
@@ -333,6 +333,11 @@ Patch18: binutils-fix-ar-test.patch
 # Purpose:  Fix a seg fault in the AArch64 linker when building u-boot.
 # Lifetime: Fixed in 2.45
 Patch19: binutils-aarch64-small-plt0.patch
+
+# Purpose:  Stops a potential illegal memory access when linking a corrupt
+#            input file.  PR 33457
+# Lifetime: Fixed in 2.46
+Patch20: binutils-CVE-2025-11083.patch
 
 #----------------------------------------------------------------------------
 
@@ -1576,6 +1581,9 @@ exit 0
 
 #----------------------------------------------------------------------------
 %changelog
+* Wed Nov 26 2025 Nick Clifton  <nickc@redhat.com> - 2.44-7.1
+- Fix a potential illegal memory access when linking a corrupt input file.  (RHEL-130616)
+
 * Mon Aug 11 2025 Nick Clifton  <nickc@redhat.com> - 2.44-7
 - Remove uneeded glibc/powerpc patch.  (RHEL-100160)
 
