@@ -27,7 +27,7 @@ Name: %{?scl_prefix}binutils
 # The variable %%{source} (see below) should be set to indicate which of these
 # origins is being used.
 Version: 2.44
-Release: 7%{?dist}.1
+Release: 8%{?dist}
 License: GPL-3.0-or-later AND (GPL-3.0-or-later WITH Bison-exception-2.2) AND (LGPL-2.0-or-later WITH GCC-exception-2.0) AND BSD-3-Clause AND GFDL-1.3-or-later AND GPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-2.0-or-later
 URL: https://sourceware.org/binutils
 
@@ -1581,8 +1581,8 @@ exit 0
 
 #----------------------------------------------------------------------------
 %changelog
-* Wed Nov 26 2025 Nick Clifton  <nickc@redhat.com> - 2.44-7.1
-- Fix a potential illegal memory access when linking a corrupt input file.  (RHEL-130616)
+* Tue Nov 25 2025 Nick Clifton  <nickc@redhat.com> - 2.44-8
+- Fix a potential illegal memory access when linking a corrupt input file.  (RHEL-130615)
 
 * Mon Aug 11 2025 Nick Clifton  <nickc@redhat.com> - 2.44-7
 - Remove uneeded glibc/powerpc patch.  (RHEL-100160)
