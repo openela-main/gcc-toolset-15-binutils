@@ -24,7 +24,7 @@ Name: %{?scl_prefix}binutils
 # The variable %%{source} (see below) should be set to indicate which of these
 # origins is being used.
 Version: 2.44
-Release: 3%{?dist}.1
+Release: 5%{?dist}
 License: GPL-3.0-or-later AND (GPL-3.0-or-later WITH Bison-exception-2.2) AND (LGPL-2.0-or-later WITH GCC-exception-2.0) AND BSD-3-Clause AND GFDL-1.3-or-later AND GPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-2.0-or-later
 URL: https://sourceware.org/binutils
 
@@ -148,7 +148,7 @@ URL: https://sourceware.org/binutils
 # Bootstrapping: Set this to 1 to build the binutils with the system gcc.
 # Then once GTS-gcc is built and in the buildroot, reset this variable
 # to 0, bump the NVR and rebuild GTS-binutils.
-%define bootstrapping 1
+%define bootstrapping 0
 
 #----End of Configure Options------------------------------------------------
 
@@ -387,6 +387,9 @@ BuildRequires: clang compiler-rt
 
 %define gcc_package %{?scl_prefix}gcc
 %define gxx_package %{?scl_prefix}gcc-c++
+
+# FIXME: gcc-annobin.so is not currently built...
+%undefine _annotated_build
 
 %if 0%{rhel} < 9
 BuildRequires: %{?scl_prefix}annobin-plugin-gcc
@@ -1573,8 +1576,11 @@ exit 0
 
 #----------------------------------------------------------------------------
 %changelog
-* Thu Nov 27 2025 Nick Clifton  <nickc@redhat.com> - 2.44-3.1
-- Fix a potential illegal memory access when linking a corrupt input file.  (RHEL-130674)
+* Wed Nov 26 2025 Nick Clifton  <nickc@redhat.com> - 2.44-5
+- Fix a potential illegal memory access when linking a corrupt input file.  (RHEL-130670)
+
+* Mon Sep 08 2025 Nick Clifton  <nickc@redhat.com> - 2.44-4
+- Disable bootstrapping.  (RHEL-112561)
 
 * Mon May 12 2025 Siddhesh Poyarekar <siddhesh@redhat.com> - 2.44-3
 - Avoid using SCL for c10s.
